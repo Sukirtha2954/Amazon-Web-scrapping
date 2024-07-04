@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scrape Reviews</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #8e9eab, #eef2f3); 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px; 
+            text-align: center; 
+        }
+        h2 {
+            color: #343a40;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .loading.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Scrape Reviews</h2>
+        <form id="scrapeForm" method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="product_url">Product URL:</label>
+                <input type="url" class="form-control" id="product_url" name="product_url" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Scrape Reviews</button>
+            <div class="loading" id="loadingMessage">
+                Please wait...
+            </div>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Show loading message on form submit
+        $('#scrapeForm').submit(function() {
+            $('#loadingMessage').addClass('show');
+        });
+    </script>
+</body>
+</html>
